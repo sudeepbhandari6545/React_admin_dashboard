@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { TooltipComponent } from '@syncfusion/ej2-react-popups'
 import React, { useEffect } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
@@ -33,14 +34,14 @@ const Navbar = () => {
   const {
     setActiveMenu,
     isClicked,
-    setIsClicked,
     handleClick,
     screenSize,
     setScreenSize,
+    currentColor,
   } = useStateContext()
 
   useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWfidth)
+    const handleResize = () => setScreenSize(window.innerWidth)
     window.addEventListener('resize', handleResize)
     handleResize()
     return () => window.addEventListener('resize', handleResize)
@@ -60,28 +61,29 @@ const Navbar = () => {
         <NavButton
           title="Menu"
           icon={<AiOutlineMenu />}
-          color="blue"
+          color={currentColor}
           customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
         />
+
         <div className="flex">
           <NavButton
             title="Cart"
             icon={<FiShoppingCart />}
-            color="blue"
+            color={currentColor}
             customFunc={() => handleClick('cart')}
           />
           <NavButton
             title="Chat"
             icon={<BsChatLeft />}
             dotColor="#03c9d7"
-            color="blue"
+            color={currentColor}
             customFunc={() => handleClick('chat')}
           />
           <NavButton
             title="Notification"
             icon={<RiNotification3Line />}
             dotColor="#03c9d7"
-            color="blue"
+            color={currentColor}
             customFunc={() => handleClick('notification')}
           />
           <TooltipComponent content="Profile" position="BottomCenter">
